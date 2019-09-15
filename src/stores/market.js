@@ -3,7 +3,14 @@ import { observable, action, computed } from 'mobx';
 export default class MarketStore {
     @observable selectedItems = [];
 
+    constructor(root) {
+        this.root = root;
+    }
+
     @action put = (name, price) => {
+        //counter 스토어에 접근
+        const { number } = this.root.counter;
+
         //존재하는지 먼저 찾는다
         const exists = this.selectedItems.find(item => item.name === name);
         
@@ -12,13 +19,13 @@ export default class MarketStore {
             this.selectedItems.push({
                 name,
                 price,
-                count: 1,
+                count: number,
             });
             return;
         }
 
-        //존재한다면 count 값만 1 증가
-        exists.count ++;
+        //존재한다면 count 값만 counter의 number만큼 증가
+        exists.count += number
     };
 
 

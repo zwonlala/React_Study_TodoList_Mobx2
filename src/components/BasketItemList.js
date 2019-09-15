@@ -17,7 +17,7 @@ const BasketItemList = ({ items, total, onTake }) => {
             {itemList}
             <hr/>
             <p>
-                <b>총합: </b> {total}}원
+                <b>총합: </b> {total}원
             </p>
         </div>
     );
